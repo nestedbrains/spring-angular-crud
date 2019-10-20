@@ -1,0 +1,36 @@
+<div class="container mt-5">
+
+      <div class="form-group">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="email" name="email">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="findByUserEmailid()">Search</button>
+  
+  </div>
+  
+
+
+<div class="container mt-5">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Domain</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th scope="row">{{user.id}}</th>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.experience}}</td>
+                <td>{{user.domain}}</td>
+                <td class="text-center"><button (click)="delete(user.id)" class="btn btn-denger btn-info">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
