@@ -1,54 +1,71 @@
-<div style="text-align: center">
-    <h1>{{message}}</h1>
-</div>
 
-<div class="container">
-    <div class="row  justify-content-md-center">
-        <div class="col-md-6 ">
-            <form [formGroup]="registrationForm" (ngSubmit)="registerNow()">
-                <legend class="text-center">Valid information is required to register. <span class="req"><small>
-                            required *</small></span></legend>
 
-                <div class="form-group">
-                    <label for="Name"><span class="req">* </span> Name: <small>This will be your login user
-                            name</small> </label>
-                    <input 
-                    type="text" 
-                    formControlName="name" 
-                    id="name" 
-                    class="form-control phone" 
-                    maxlength="28"
-                    placeholder="Enter your fullname..." />
-                </div>
+<div nz-row>
+  <div nz-col nzSpan="12" nzOffset="6">
+    <form nz-form [formGroup]="registrationForm" class="login-form" (ngSubmit)="registerNow()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="name">
+            <input type="text" nz-input formControlName="name" placeholder="Enter User name please" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
 
-                <div class="form-group">
-                    <label for="firstname"><span class="req">* </span> Email: </label>
-                    <input class="form-control" type="text" formControlName="email" id="txt"
-                        placeholder="Enter valid email address" />
-                    <div id="errFirst"></div>
-                </div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your email!">
+          <nz-input-group nzPrefixIcon="email">
+            <input type="text" nz-input formControlName="email" placeholder="Enter email please" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
 
-                <div class="form-group">
-                    <label for="lastname"><span class="req">* </span> Experience : </label>
-                    <input class="form-control" type="number" formControlName="experience" id="txt"
-                        placeholder="Total year of experience" />
-                    <div id="errLast"></div>
-                </div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your experience!">
+          <nz-input-group nzPrefixIcon="domain">
+            <input type="text" nz-input formControlName="domain" placeholder="fullstack/ backend/ developer" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
 
-                <div class="form-group">
-                    <label for="email"><span class="req">* </span> Developer: </label>
-                    <input class="form-control" type="text" formControlName="domain" id="email"
-                        placeholder="fullstack/ backend/ developer" />
-                    <div class="status" id="status"></div>
-                </div>
-                <div class="form-group">
-                    <input class="btn btn-success" type="submit" name="submit_reg" value="Register">
-                </div>
-            </form><!-- ends register form -->
-            <!-- second for to fiter user-->
-        </div><!-- ends col-6 -->
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  
+ 
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your email!">
+        <nz-input-group nzPrefixIcon="email">
+          <input type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="email" name="email">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button type="submit" nz-button nzType="primary" (click)="findByUserEmailid()"><i nz-icon nzType="search"></i>Search</button>
+    <br>
 
-    </div>
-
-    {{registrationForm.value | json}}
+    <nz-table #basicTable [nzData]="users">
+      <thead class="thead-dark">
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Experience</th>
+              <th scope="col">Domain</th>
+              <th scope="col">Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let user of users">
+              <th scope="row">{{user.id}}</th>
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.experience}}</td>
+              <td>{{user.domain}}</td>
+              <td class="text-center"><button (click)="delete(user.id)" nz-button nzType="danger">Delete</button></td>
+          </tr>
+      </tbody>
+  </nz-table>
+  </div>
 </div>
