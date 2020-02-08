@@ -1,71 +1,60 @@
-
-
 <div nz-row>
+
   <div nz-col nzSpan="12" nzOffset="6">
+    <h2>Developers List</h2>
     <form nz-form [formGroup]="registrationForm" class="login-form" (ngSubmit)="registerNow()">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">
-          <nz-input-group nzPrefixIcon="name">
-            <input type="text" nz-input formControlName="name" placeholder="Enter User name please" />
+          <nz-input-group>
+            <input type="text" nz-input formControlName="name" placeholder="Enter User name please"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your email!">
-          <nz-input-group nzPrefixIcon="email">
-            <input type="text" nz-input formControlName="email" placeholder="Enter email please" />
+          <nz-input-group>
+            <input type="text" nz-input formControlName="email" placeholder="Enter email please"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your experience!">
-          <nz-input-group nzPrefixIcon="domain">
-            <input type="text" nz-input formControlName="domain" placeholder="fullstack/ backend/ developer" />
+          <nz-input-group>
+            <input type="text" nz-input formControlName="domain" placeholder="fullstack/ backend/ developer"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary">Submit</button>
+          <button type="submit" nz-button nzType="primary">Submit</button>
         </nz-form-control>
       </nz-form-item>
     </form>
-  
- 
+
+
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your email!">
-        <nz-input-group nzPrefixIcon="email">
-          <input type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="email" name="email">
+        <nz-input-group>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="email"
+                 name="email">
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <button type="submit" nz-button nzType="primary" (click)="findByUserEmailid()"><i nz-icon nzType="search"></i>Search</button>
+    <button type="submit" nz-button nzType="primary" (click)="findByUserEmailId()"><i nz-icon nzType="search"></i>Search
+    </button>
     <br>
 
-    <nz-table #basicTable [nzData]="users">
-      <thead class="thead-dark">
-          <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Experience</th>
-              <th scope="col">Domain</th>
-              <th scope="col">Action</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let user of users">
-              <th scope="row">{{user.id}}</th>
-              <td>{{user.name}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.experience}}</td>
-              <td>{{user.domain}}</td>
-              <td class="text-center"><button (click)="delete(user.id)" nz-button nzType="danger">Delete</button></td>
-          </tr>
-      </tbody>
-  </nz-table>
+    <div nz-row [nzGutter]="8">
+      <div *ngFor="let user of users" nz-col [nzSpan]="8" style="padding: 10px">
+        <nz-card nzType="warning" nzTitle="{{user.name}}">
+          <i nz-icon nzType="down" nzTheme="outline"></i>
+          <p>{{user.email}}</p>
+        </nz-card>
+      </div>
+    </div>
   </div>
+
 </div>
